@@ -1,6 +1,7 @@
 # AJS. Retro Game
 
 ###### tags: `netology` `advanced js`
+[![Build status](https://ci.appveyor.com/api/projects/status/6fg02vp99p87g7t0?svg=true)](https://ci.appveyor.com/project/Mistel-77/js-advanced-diploma)
 
 ## Предыстория
 
