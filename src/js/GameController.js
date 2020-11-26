@@ -20,7 +20,8 @@ export default class GameController {
     };
     this.theme = theme[this.level];
 
-    this.gamePlay.drawUi(this.theme);
+    this.gamePlay.drawUi(this.theme); // отрисовка поля
+    this.gamePlay.redrawPositions(); // отрисовка команд
   }
 
   // eslint-disable-next-line no-unused-vars
