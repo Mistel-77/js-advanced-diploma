@@ -28,6 +28,7 @@ export default class GameController {
     this.gamePlay = gamePlay;
     this.stateService = stateService;
     this.level = 1;
+    this.position = [];
   }
 
   init() {
@@ -46,6 +47,11 @@ export default class GameController {
     // this.gamePlay.redrawPositions(this.generateTeam(playerCell, 1, playerClass));
     // this.gamePlay.redrawPositions(this.generateTeam(computerCell, 1, computerClass));
     this.gamePlay.redrawPositions([...playerTeamPosition, ...computerTeamPosition]);
+    this.position.push(playerTeamPosition[0], playerTeamPosition[1]);
+    this.position.push(computerTeamPosition[0], computerTeamPosition[1]);
+
+    this.gamePlay.addCellEnterListener(this.onCellEnter.bind(this));
+    this.gamePlay.addCellLeaveListener(this.onCellLeave.bind(this));
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -56,10 +62,17 @@ export default class GameController {
   // eslint-disable-next-line lines-between-class-members
   onCellEnter(index) {
     // TODO: react to mouse enter
+    const searchUnit = this.position.find((item) => item.position === index);
+    if (searchUnit) {
+      const unit = searchUnit.character;
+      const message = `${'\u{1F396}'} ${unit.level} ${'\u{2694}'} ${unit.attack} ${'\u{1F6E1}'} ${unit.defence} ${'\u{2764}'} ${unit.health}`;
+      this.gamePlay.showCellTooltip(message, index);
+    }
   }
 
   // eslint-disable-next-line no-unused-vars
   onCellLeave(index) {
     // TODO: react to mouse leave
+    this.gamePlay.hideCellTooltip(index);
   }
 }
